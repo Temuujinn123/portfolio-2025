@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temuujin Juldas | Developer Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Base Styles */
+      :root {
+        --bg-primary: #0a0a0a;
+        --bg-secondary: #161616;
+        --text-primary: #f0f0f0;
+        --text-secondary: #a0a0a0;
+        --accent: #64ffda;
+        --card-bg: #1a1a1a;
+        --nav-height: 70px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Typography */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-weight: 600;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      h2::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background-color: var(--accent);
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: var(--text-secondary);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--text-primary);
+      }
+
+      /* Layout */
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 100px 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: var(--nav-height);
+        background-color: rgba(10, 10, 10, 0.9);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5%;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 2rem;
+      }
+
+      .nav-links a {
+        color: var(--text-primary);
+        font-weight: 500;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      #hero {
+        text-align: center;
+        position: relative;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      .hero-description {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 12px 28px;
+        background-color: transparent;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(50px);
+      }
+
+      .cta-button:hover {
+        background-color: rgba(100, 255, 218, 0.1);
+      }
+
+      /* Section Common Styles */
+      .section-header {
+        margin-bottom: 4rem;
+        text-align: center;
+      }
+
+      /* Experience Section */
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        background-color: var(--accent);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -1px;
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 50%;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        background-color: var(--card-bg);
+        border-radius: 6px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .timeline-date {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* Projects Section */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .project-card {
+        background-color: var(--card-bg);
+        border-radius: 6px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .project-img {
+        width: 100%;
+        height: 200px;
+        background-color: #2a2a2a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .project-info {
+        padding: 20px;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 15px 0;
+      }
+
+      .tech-tag {
+        background-color: rgba(100, 255, 218, 0.1);
+        color: var(--accent);
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+
+      /* Skills Section */
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .skill-category {
+        background-color: var(--card-bg);
+        padding: 25px;
+        border-radius: 6px;
+      }
+
+      .skill-list {
+        list-style: none;
+      }
+
+      .skill-list li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .skill-list i {
+        color: var(--accent);
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--bg-secondary);
+        padding: 50px 0 20px;
+        text-align: center;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--card-bg);
+        color: var(--text-primary);
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background-color: var(--accent);
+        color: var(--bg-primary);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        .timeline::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item:nth-child(even) {
+          left: 0;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+
+      .cursor {
+        background-image: radial-gradient(
+          circle at center center,
+          rgba(100, 255, 218, 0.2),
+          rgba(100, 255, 218, 0)
+        );
+        width: 100px;
+        height: 100px;
+        z-index: -1;
+        border-radius: 100%;
+        /* backdrop-filter: blur(10px); */
+        position: absolute;
+        transition: transform 0.3s linear;
+        transform: scale(1);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Cursor animation -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">{"Full-Stack Developer"}</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-subtitle">Hi, my name is</p>
+          <h1>Temuujin Juldas</h1>
+          <p class="hero-description">
+            I'm a software developer, who have 2+ years of experience,
+            specializing in building exceptional website, application, and
+            desktop application.
+          </p>
+          <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-header">
+          <h2>Work Experience</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date">Nov 2024 - Aug 2025</span>
+              <h3>Full Stack Developer</h3>
+              <p>ITWizard LLC</p>
+              <p>
+                Single handedly completed project Maxonomy, using next js and
+                java spring boot. And contributed as full-stack developer and
+                flutter developer in Nursegate which is a linkedin like platform
+                for Korean nurses.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date">June 2023 - Sep 2023</span>
+              <h3>Full Stack Developer</h3>
+              <p>URECA LLC</p>
+              <p>
+                Developed and maintained web applications for URECA, a global
+                carbon credit project. Utilized React.js and Node.js to enhance
+                user experience and application performance. Collaborated with
+                cross-functional teams to ensure project alignment with
+                sustainability goals.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date">Jan 2022 - Feb 2023</span>
+              <h3>Front End Developer</h3>
+              <p>ITWizard LLC</p>
+              <p>
+                Built and maintained client websites using modern JavaScript
+                frameworks. And contributed Korean projects.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <h2>Projects</h2>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div
+              class="project-img"
+              style="
+                background-image: url(https://maxonomy.net/assets/images/bannerMain.webp);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+              "
+            >
+              <!-- <i
+                class="fas fa-laptop-code"
+                style="font-size: 3rem; color: #64ffda"
+              ></i> -->
+            </div>
+            <div class="project-info">
+              <h3>MAXONOMY</h3>
+              <p>
+                A full-stack "StackOverflow" like solution for CJ, which is a
+                Korean one of the biggest company, with user authentication,
+                blogs, QnA, and admin dashboard.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Next js</span>
+                <span class="tech-tag">Tailwind CSS</span>
+                <span class="tech-tag">Redux</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Java Spring Boot</span>
+                <span class="tech-tag">MySql</span>
+                <span class="tech-tag">SEO</span>
+              </div>
+              <a href="https://maxonomy.net/" target="_blank"
+                >View Project <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div
+              class="project-img"
+              style="
+                background-image: url(https://ureca.com/Home.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+              "
+            >
+              <!-- <i
+                class="fas fa-mobile-alt"
+                style="font-size: 3rem; color: #64ffda"
+              ></i> -->
+            </div>
+            <div class="project-info">
+              <h3>URECA</h3>
+              <p>
+                Contributed a full-stack platform URECA, a global carbon credit
+                project, with cross-functional teams to ensure project alignment
+                with sustainability goals.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">React js</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Redux</span>
+                <span class="tech-tag">Block Chain</span>
+                <span class="tech-tag">Node js</span>
+                <span class="tech-tag">Prisma</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <a href="https://ureca.com/" target="_blank"
+                >View Project <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div
+              class="project-img"
+              style="
+                background-image: url(https://www.nursegate.co.kr/images/logo.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+              "
+            >
+              <!-- <i
+                class="fas fa-chart-line"
+                style="font-size: 3rem; color: #64ffda"
+              ></i> -->
+            </div>
+            <div class="project-info">
+              <h3>NURSEGATE</h3>
+              <p>
+                A full-stack "LinkedIn" like solution for Korean nurses with
+                user authentication, identity verification, payment, and admin
+                dashboard.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Vite js</span>
+                <span class="tech-tag">Redux</span>
+                <span class="tech-tag">Java Spring Boot</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <a href="https://www.nursegate.co.kr/" target="_blank"
+                >View Project <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <h2>Skills</h2>
+        </div>
+        <div class="skills-container">
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <ul class="skill-list">
+              <li><i class="fas fa-check"></i> JavaScript (ES6+)</li>
+              <li><i class="fas fa-check"></i> React (Next & Vite)</li>
+              <li><i class="fas fa-check"></i> Redux</li>
+              <li><i class="fas fa-check"></i> React Native</li>
+              <li><i class="fas fa-check"></i> Flutter</li>
+              <li><i class="fas fa-check"></i> HTML & CSS</li>
+              <li><i class="fas fa-check"></i> Tailwind CSS</li>
+              <li><i class="fas fa-check"></i> TypeScript</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Backend</h3>
+            <ul class="skill-list">
+              <li><i class="fas fa-check"></i> Java Spring Boot</li>
+              <li><i class="fas fa-check"></i> Node.js</li>
+              <li><i class="fas fa-check"></i> Express</li>
+              <li><i class="fas fa-check"></i> MongoDB</li>
+              <li><i class="fas fa-check"></i> PostgreSQL</li>
+              <li><i class="fas fa-check"></i> MySQL</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Tools & Others</h3>
+            <ul class="skill-list">
+              <li><i class="fas fa-check"></i> Git & GitHub</li>
+              <li><i class="fas fa-check"></i> Docker</li>
+              <li><i class="fas fa-check"></i> AWS</li>
+              <li><i class="fas fa-check"></i> CI/CD</li>
+              <li><i class="fas fa-check"></i> RESTful APIs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Get In Touch</h2>
+        </div>
+        <div style="text-align: center; max-width: 600px; margin: 0 auto">
+          <p>
+            I'm currently looking for new opportunities. Whether you have a
+            question or just want to say hi, I'll try my best to get back to
+            you!
+          </p>
+          <a
+            href="mailto:youremail@example.com"
+            class="cta-button"
+            style="margin-top: 30px"
+            >Say Hello</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="social-links">
+          <a href="https://github.com/Temuujinn123" target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            href="www.linkedin.com/in/temuujin-juldas-889b12328"
+            target="_blank"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+          <!-- <a href="#"><i class="fab fa-dev"></i></a> -->
+        </div>
+        <p class="copyright">Designed & Built by Temuujin Juldas © 2025</p>
+      </div>
+    </footer>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
